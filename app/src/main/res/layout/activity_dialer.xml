@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:columnCount="3"
+        android:rowCount="4"
+        style="@style/AppTheme"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Dialer"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:focusable="false"
+        android:orientation="horizontal"
+        android:rowOrderPreserved="false">
+
+    <Button
+        android:layout_width="@dimen/phoneDialerButtonWidth"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:text="1"
+        android:id="@+id/numberButtonOne"
+        android:layout_alignBottom="@id/numberButtonTwo"
+        android:layout_toLeftOf="@+id/numberButtonTwo" />
+
+    <Button
+        android:layout_width="@dimen/phoneDialerButtonWidth"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:text="2"
+        android:id="@+id/numberButtonTwo"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/numberButtonFive" />
+
+    <Button
+        android:layout_width="@dimen/phoneDialerButtonWidth"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:text="3"
+        android:id="@+id/numberButtonThree"
+        android:layout_alignBottom="@id/numberButtonTwo"
+        android:layout_toRightOf="@+id/numberButtonTwo" />
+
+    <Button
+        android:layout_width="@dimen/phoneDialerButtonWidth"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:text="4"
+        android:id="@+id/numberButtonFour"
+        android:layout_alignBottom="@id/numberButtonFive"
+        android:layout_toLeftOf="@+id/numberButtonFive" />
+
+    <Button
+        android:layout_width="@dimen/phoneDialerButtonWidth"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:text="5"
+        android:id="@+id/numberButtonFive"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/numberButtonEight" />
+
+    <Button
+        android:layout_width="@dimen/phoneDialerButtonWidth"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:text="6"
+        android:id="@+id/numberButtonSix"
+        android:layout_alignBottom="@id/numberButtonFive"
+        android:layout_toRightOf="@+id/numberButtonFive" />
+
+    <Button
+        android:layout_width="@dimen/phoneDialerButtonWidth"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:text="7"
+        android:id="@+id/numberButtonSeven"
+        android:layout_alignBottom="@id/numberButtonEight"
+        android:layout_toLeftOf="@+id/numberButtonEight" />
+
+    <Button
+        android:layout_width="@dimen/phoneDialerButtonWidth"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:text="8"
+        android:id="@+id/numberButtonEight"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/numberButtonZero" />
+
+    <Button
+        android:layout_width="@dimen/phoneDialerButtonWidth"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:text="9"
+        android:id="@+id/numberButtonNine"
+        android:layout_alignBottom="@id/numberButtonEight"
+        android:layout_toRightOf="@+id/numberButtonEight" />
+
+    <Button
+        android:layout_width="@dimen/phoneDialerButtonWidth"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:text="+"
+        android:id="@+id/numberButtonPlus"
+        android:layout_alignBottom="@id/numberButtonZero"
+        android:layout_toLeftOf="@+id/numberButtonZero" />
+
+    <Button
+        android:layout_width="@dimen/phoneDialerButtonWidth"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:text="0"
+        android:id="@+id/numberButtonZero"
+        android:layout_above="@id/callButton"
+        android:layout_centerInParent="true" />
+    <Button
+        android:layout_width="@dimen/phoneDialerButtonWidth"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:text="#"
+        android:id="@+id/numberButtonRoute"
+        android:layout_alignBottom="@id/numberButtonZero"
+        android:layout_toRightOf="@+id/numberButtonZero" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/NumberDiplay"
+        android:hint="+31647622714"
+        android:gravity="center"
+        android:textAlignment="gravity"
+        android:layout_above="@+id/numberButtonOne"
+        android:layout_alignStart="@+id/numberButtonOne"
+        android:layout_alignEnd="@+id/numberButtonThree"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/phoneDialerButtonHeight"
+        android:text="Call"
+        android:id="@+id/callButton"
+        android:textAlignment="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/numberButtonPlus"
+        android:layout_alignEnd="@+id/numberButtonRoute" />
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/imageView"
+        android:layout_alignLeft="@+id/NumberDiplay"
+        android:layout_alignBottom="@+id/NumberDiplay" />
+
+</RelativeLayout>
+
