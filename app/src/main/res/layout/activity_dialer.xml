@@ -18,11 +18,10 @@
         android:orientation="horizontal"
         android:rowOrderPreserved="false">
 
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="@dimen/phoneDialerButtonHeight"
-        android:text="Call"
+        android:text="Show Country"
         android:id="@+id/callButton"
         android:textAlignment="center"
         android:layout_alignParentBottom="true"
@@ -35,21 +34,24 @@
         android:text="0"
         android:id="@+id/numberButtonZero"
         android:layout_above="@id/callButton"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:onClick="onClick" />
     <Button
         android:layout_width="@dimen/phoneDialerButtonWidth"
         android:layout_height="@dimen/phoneDialerButtonHeight"
         android:text="+"
         android:id="@+id/numberButtonPlus"
         android:layout_alignBottom="@id/numberButtonZero"
-        android:layout_toLeftOf="@+id/numberButtonZero" />
+        android:layout_toLeftOf="@+id/numberButtonZero"
+        android:onClick="onClick" />
     <Button
         android:layout_width="@dimen/phoneDialerButtonWidth"
         android:layout_height="@dimen/phoneDialerButtonHeight"
         android:text="#"
         android:id="@+id/numberButtonRoute"
         android:layout_alignBottom="@id/numberButtonZero"
-        android:layout_toRightOf="@+id/numberButtonZero" />
+        android:layout_toRightOf="@+id/numberButtonZero"
+        android:onClick="onClick" />
 
 
     <Button
@@ -58,21 +60,24 @@
         android:text="5"
         android:id="@+id/numberButtonFive"
         android:layout_centerInParent="true"
-        android:layout_above="@+id/numberButtonEight" />
+        android:layout_above="@+id/numberButtonEight"
+        android:onClick="onClick" />
     <Button
         android:layout_width="@dimen/phoneDialerButtonWidth"
         android:layout_height="@dimen/phoneDialerButtonHeight"
         android:text="4"
         android:id="@+id/numberButtonFour"
         android:layout_alignBottom="@id/numberButtonFive"
-        android:layout_toLeftOf="@+id/numberButtonFive" />
+        android:layout_toLeftOf="@+id/numberButtonFive"
+        android:onClick="onClick" />
     <Button
         android:layout_width="@dimen/phoneDialerButtonWidth"
         android:layout_height="@dimen/phoneDialerButtonHeight"
         android:text="6"
         android:id="@+id/numberButtonSix"
         android:layout_alignBottom="@id/numberButtonFive"
-        android:layout_toRightOf="@+id/numberButtonFive" />
+        android:layout_toRightOf="@+id/numberButtonFive"
+        android:onClick="onClick" />
 
     <Button
         android:layout_width="@dimen/phoneDialerButtonWidth"
@@ -80,21 +85,25 @@
         android:text="2"
         android:id="@+id/numberButtonTwo"
         android:layout_centerInParent="true"
-        android:layout_above="@+id/numberButtonFive" />
+        android:layout_above="@+id/numberButtonFive"
+        android:onClick="onClick" />
     <Button
         android:layout_width="@dimen/phoneDialerButtonWidth"
         android:layout_height="@dimen/phoneDialerButtonHeight"
         android:text="1"
         android:id="@+id/numberButtonOne"
         android:layout_alignBottom="@id/numberButtonTwo"
-        android:layout_toLeftOf="@+id/numberButtonTwo" />
+        android:layout_toLeftOf="@+id/numberButtonTwo"
+        android:clickable="true"
+        android:onClick="onClick" />
     <Button
         android:layout_width="@dimen/phoneDialerButtonWidth"
         android:layout_height="@dimen/phoneDialerButtonHeight"
         android:text="3"
         android:id="@+id/numberButtonThree"
         android:layout_alignBottom="@id/numberButtonTwo"
-        android:layout_toRightOf="@+id/numberButtonTwo" />
+        android:layout_toRightOf="@+id/numberButtonTwo"
+        android:onClick="onClick" />
 
 
     <Button
@@ -103,37 +112,40 @@
         android:text="7"
         android:id="@+id/numberButtonSeven"
         android:layout_alignBottom="@id/numberButtonEight"
-        android:layout_toLeftOf="@+id/numberButtonEight" />
+        android:layout_toLeftOf="@+id/numberButtonEight"
+        android:onClick="onClick" />
     <Button
         android:layout_width="@dimen/phoneDialerButtonWidth"
         android:layout_height="@dimen/phoneDialerButtonHeight"
         android:text="8"
         android:id="@+id/numberButtonEight"
         android:layout_centerInParent="true"
-        android:layout_above="@+id/numberButtonZero" />
+        android:layout_above="@+id/numberButtonZero"
+        android:onClick="onClick" />
     <Button
         android:layout_width="@dimen/phoneDialerButtonWidth"
         android:layout_height="@dimen/phoneDialerButtonHeight"
         android:text="9"
         android:id="@+id/numberButtonNine"
         android:layout_alignBottom="@id/numberButtonEight"
-        android:layout_toRightOf="@+id/numberButtonEight" />
+        android:layout_toRightOf="@+id/numberButtonEight"
+        android:onClick="onClick" />
 
 
-
-
-
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="@dimen/phoneDialerButtonHeight"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/NumberDiplay"
-        android:hint="+31647622714"
         android:gravity="center"
         android:textAlignment="gravity"
         android:layout_above="@+id/numberButtonOne"
         android:layout_alignStart="@+id/numberButtonOne"
-        android:layout_alignEnd="@+id/numberButtonThree"/>
+        android:layout_alignEnd="@+id/numberButtonThree"
+        android:phoneNumber="false"
+        android:textIsSelectable="true"
+        android:inputType="phone"
+        android:focusable="true" />
 
     <ImageView
         android:layout_width="75dp"
