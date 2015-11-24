@@ -4,5 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="phoneDialerButtonHeight">75dp</dimen>
     <dimen name="phoneDialerButtonWidth">100dp</dimen>
+    <dimen name="phoneDialerButtonWidthLandScape">75dp</dimen>
+    <dimen name="phoneDialerButtonHeightLandScape">60dp</dimen>
 
 </resources>
