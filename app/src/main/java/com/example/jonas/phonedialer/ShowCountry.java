@@ -1,34 +1,84 @@
 package com.example.jonas.phonedialer;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
-public class ShowCountry extends AppCompatActivity {
+public class ShowCountry extends AppCompatActivity implements View.OnClickListener {
+
+    private PhoneNumberUtil phoneUtil;// = PhoneNumberUtil.getInstance();
+    private Phonenumber.PhoneNumber NumberProto;// = phoneUtil.parse(NumberStr, "NL");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_country);
         Intent intent = getIntent();
-        String NumberStr = intent.getStringExtra(Dialer.EXTRA_MESSAGE);
-        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+        String NumberStr = "+" + intent.getStringExtra(Dialer.EXTRA_MESSAGE);
+        phoneUtil = PhoneNumberUtil.getInstance();
+        TextView number = (TextView) this.findViewById(R.id.textView);
+        TextView country = (TextView) this.findViewById(R.id.textView2);
+        ImageView img = (ImageView) this.findViewById(R.id.imageView3);
+        Context context = img.getContext();
+        String countryCode = null;
+        String countryCodeLetters = null;
+        int id;
 
         try {
-            Phonenumber.PhoneNumber NumberProto = phoneUtil.parse(NumberStr, "NL");
-            if (phoneUtil.isValidNumber(NumberProto)){
-                phoneUtil.format(NumberProto, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
-            }
-            else{
-
+            NumberProto = phoneUtil.parse(NumberStr, "NL");
+            if (phoneUtil.isPossibleNumber(NumberProto) && phoneUtil.isValidNumber(NumberProto)){
+                countryCode = phoneUtil.getRegionCodeForCountryCode(NumberProto.getCountryCode());
+                countryCodeLetters = phoneUtil.format(NumberProto, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
+                if (countryCode!= null && countryCodeLetters != null){
+                    number.setText(countryCode.toCharArray(), 0, countryCode.length());
+                    country.setText(countryCodeLetters.toCharArray(), 0, countryCodeLetters.length());
+                    id = context.getResources().getIdentifier("flag_" + phoneUtil.getRegionCodeForCountryCode(NumberProto.getCountryCode()).toLowerCase(), "drawable", context.getPackageName());
+                    img.setImageResource(id);
+                }
+            } else {
+                number.setText(("Error: number is not valid").toCharArray(), 0, ("Error: number is not valid").length());
             }
         } catch (NumberParseException e) {
-            Log.d("err","NumberParseException was thrown: " + e.toString());
+            Log.d("err", "NumberParseException was thrown: " + e.toString());
         }
     }
+
+    @Override
+    public void onClick(View v) {
+        this.finish();
+    }
+
+    public void onCall(View v) {
+        String uri = "tel:" + phoneUtil.format(NumberProto, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL).trim();
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse(uri));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        startActivity(intent);
+    }
+
+
 }
