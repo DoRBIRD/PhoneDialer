@@ -1,10 +1,12 @@
 package com.example.jonas.phonedialer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -13,7 +15,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+
 public class Dialer extends ActionBarActivity implements View.OnClickListener {
+    public final static String EXTRA_MESSAGE = "com.jonas.PhoneDialer.MESSAGE";
     protected  String phoneNumber;
 
     @Override
@@ -53,6 +60,14 @@ public class Dialer extends ActionBarActivity implements View.OnClickListener {
         int end = txt.getSelectionEnd();
         phoneNumber = phoneNumber.substring(0,start) + number + phoneNumber.substring(end,phoneNumber.length());
         txt.setText(this.phoneNumber.toCharArray(), 0, this.phoneNumber.length());
-        txt.setSelection(start+1);
+        txt.setSelection(start + 1);
+    }
+
+    public void sendNumber(View view) {
+        Intent intent = new Intent(this, ShowCountry.class);
+        EditText editText = (EditText) findViewById(R.id.NumberDiplay);
+        String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
     }
 }

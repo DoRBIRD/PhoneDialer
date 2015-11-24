@@ -26,7 +26,8 @@
         android:textAlignment="center"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/numberButtonPlus"
-        android:layout_alignEnd="@+id/numberButtonRoute" />
+        android:layout_alignEnd="@+id/numberButtonRoute"
+        android:onClick="sendNumber" />
 
     <Button
         android:layout_width="@dimen/phoneDialerButtonWidth"
