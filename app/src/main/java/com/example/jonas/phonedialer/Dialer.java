@@ -62,6 +62,20 @@ public class Dialer extends ActionBarActivity implements View.OnClickListener {
         txt.setText(this.phoneNumber.toCharArray(), 0, this.phoneNumber.length());
         txt.setSelection(start + 1);
     }
+    public void removeNumber(View view){
+        EditText txt = (EditText)this.findViewById(R.id.NumberDiplay);
+        int start = txt.getSelectionStart();
+        int end = txt.getSelectionEnd();
+        if(start != end){
+            phoneNumber = phoneNumber.substring(0,start) + phoneNumber.substring(end,phoneNumber.length());
+            txt.setText(this.phoneNumber.toCharArray(), 0, this.phoneNumber.length());
+            txt.setSelection(start);
+        }else if(start == end && start >0){
+            phoneNumber = phoneNumber.substring(0,start-1) + phoneNumber.substring(end,phoneNumber.length());
+            txt.setText(this.phoneNumber.toCharArray(), 0, this.phoneNumber.length());
+            txt.setSelection(start-1);
+        }
+    }
 
     public void sendNumber(View view) {
         Intent intent = new Intent(this, ShowCountry.class);

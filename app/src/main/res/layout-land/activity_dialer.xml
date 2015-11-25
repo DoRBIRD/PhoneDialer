@@ -51,11 +51,11 @@
     <Button
         android:layout_width="@dimen/phoneDialerButtonWidthLandScape"
         android:layout_height="@dimen/phoneDialerButtonHeightLandScape"
-        android:text="#"
+        android:text="&lt;-"
         android:id="@+id/numberButtonRoute"
         android:layout_alignBottom="@id/numberButtonZero"
         android:layout_toRightOf="@+id/numberButtonZero"
-        android:onClick="onClick" />
+        android:onClick="removeNumber" />
 
 
     <Button
