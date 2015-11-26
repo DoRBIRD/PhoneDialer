@@ -20,7 +20,7 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
-public class Dialer extends ActionBarActivity implements View.OnClickListener {
+public class Dialer extends AppCompatActivity implements View.OnClickListener {
     public final static String EXTRA_MESSAGE = "com.jonas.PhoneDialer.MESSAGE";
     protected  String phoneNumber;
 
