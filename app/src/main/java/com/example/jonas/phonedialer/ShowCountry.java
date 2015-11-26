@@ -29,10 +29,10 @@ public class ShowCountry extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_country);
         Intent intent = getIntent();
-        String NumberStr = "+" + intent.getStringExtra(Dialer.EXTRA_MESSAGE);
+        String NumberStr = intent.getStringExtra(Dialer.EXTRA_MESSAGE);
         phoneUtil = PhoneNumberUtil.getInstance();
-        TextView number = (TextView) this.findViewById(R.id.textView);
-        TextView country = (TextView) this.findViewById(R.id.textView2);
+        TextView number = (TextView) this.findViewById(R.id.textView2);
+        TextView country = (TextView) this.findViewById(R.id.textView);
         ImageView img = (ImageView) this.findViewById(R.id.imageView3);
         Context context = img.getContext();
         String countryCode = null;
@@ -40,22 +40,33 @@ public class ShowCountry extends AppCompatActivity implements View.OnClickListen
         int id;
 
         try {
-            NumberProto = phoneUtil.parse(NumberStr, "NL");
-            if (phoneUtil.isPossibleNumber(NumberProto) && phoneUtil.isValidNumber(NumberProto)){
-                countryCode = phoneUtil.getRegionCodeForCountryCode(NumberProto.getCountryCode());
-                countryCodeLetters = phoneUtil.format(NumberProto, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
-                if (countryCode!= null && countryCodeLetters != null){
-                    number.setText(countryCode.toCharArray(), 0, countryCode.length());
-                    country.setText(countryCodeLetters.toCharArray(), 0, countryCodeLetters.length());
-                    id = context.getResources().getIdentifier("flag_" + phoneUtil.getRegionCodeForCountryCode(NumberProto.getCountryCode()).toLowerCase(), "drawable", context.getPackageName());
-                    img.setImageResource(id);
+            Log.d("number", NumberStr);
+            if(NumberStr.length() > 0){
+                NumberProto = phoneUtil.parse(NumberStr, "NL");
+                if (phoneUtil.isPossibleNumber(NumberProto) && phoneUtil.isValidNumber(NumberProto) ) {
+                    countryCode = phoneUtil.getRegionCodeForCountryCode(NumberProto.getCountryCode());
+                    countryCodeLetters = phoneUtil.format(NumberProto, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
+                    if (countryCode != null && countryCodeLetters != null) {
+                        country.setText(countryCode.toCharArray(), 0, countryCode.length());
+                        number.setText(countryCodeLetters.toCharArray(), 0, countryCodeLetters.length());
+                        id = context.getResources().getIdentifier("flag_" + phoneUtil.getRegionCodeForCountryCode(NumberProto.getCountryCode()).toLowerCase(), "drawable", context.getPackageName());
+                        img.setImageResource(id);
+                    }
+                } else {
+                    number.setText(("Number is not valid").toCharArray(), 0, ("Number is not valid").length());
+                    country.setText(("--").toCharArray(), 0, ("--").length());
                 }
-            } else {
-                number.setText(("Error: number is not valid").toCharArray(), 0, ("Error: number is not valid").length());
+            }else{
+                number.setText(("Number is empty").toCharArray(), 0, ("Number is empty").length());
+                country.setText(("--").toCharArray(), 0, ("--").length());
             }
         } catch (NumberParseException e) {
             Log.d("err", "NumberParseException was thrown: " + e.toString());
-        }
+
+        }  catch (Exception e) {
+        Log.d("err", "Wiener was thrown: " + e.toString());
+
+    }
     }
 
     @Override

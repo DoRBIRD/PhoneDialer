@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.i18n.phonenumbers.NumberParseException;
@@ -37,9 +38,9 @@ public class Dialer extends ActionBarActivity implements View.OnClickListener {
             public boolean onTouch(View v, MotionEvent event) {
 
                 v.onTouchEvent(event);
-                InputMethodManager imm = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 if (imm != null)
-                   imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 return true;
             }
         });
@@ -48,24 +49,41 @@ public class Dialer extends ActionBarActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         EditText txt = (EditText)this.findViewById(R.id.NumberDiplay);
+        phoneNumber = txt.getText().toString();
         Button b = (Button)v;
         String buttonText = b.getText().toString();
-        this.addNumber(buttonText, txt);
+        this.addNumber(buttonText);
         if (txt == null)
             return ;
     }
 
-    public void addNumber(String number, EditText txt){
-        int start = txt.getSelectionStart();
-        int end = txt.getSelectionEnd();
+    public void addNumber(String number){
+        EditText txt = (EditText)this.findViewById(R.id.NumberDiplay);
+        int start;
+        int end;
+        if (txt.getSelectionStart() < 0 || txt.getSelectionEnd() < 0){
+            start = txt.length();
+            end = txt.length();
+        }else{
+            start = txt.getSelectionStart();
+            end = txt.getSelectionEnd();
+        }
         phoneNumber = phoneNumber.substring(0,start) + number + phoneNumber.substring(end,phoneNumber.length());
         txt.setText(this.phoneNumber.toCharArray(), 0, this.phoneNumber.length());
         txt.setSelection(start + 1);
     }
     public void removeNumber(View view){
         EditText txt = (EditText)this.findViewById(R.id.NumberDiplay);
-        int start = txt.getSelectionStart();
-        int end = txt.getSelectionEnd();
+        int start;
+        int end;
+        if (txt.getSelectionStart() < 0 || txt.getSelectionEnd() < 0){
+            start = txt.length();
+            end = txt.length();
+        }else{
+            start = txt.getSelectionStart();
+            end = txt.getSelectionEnd();
+        }
+        phoneNumber = txt.getText().toString();
         if(start != end){
             phoneNumber = phoneNumber.substring(0,start) + phoneNumber.substring(end,phoneNumber.length());
             txt.setText(this.phoneNumber.toCharArray(), 0, this.phoneNumber.length());
